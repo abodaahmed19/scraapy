@@ -1,6 +1,4 @@
 import axios from '@/axios'
-import User from '@/store/User'
-
 interface NotificationsState {
   Notifications: []
 }
@@ -20,7 +18,6 @@ export default {
 
   actions: {
     async fetchNotifications({ commit }: { commit: any }) {
-      if (!User.getters.isAuthenticated) return
       try {
         const res = await axios.get('api/users/notifications/')
         // Commit the Notifications to the store

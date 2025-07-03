@@ -5,7 +5,7 @@ import User from '@/store/User';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  timeout: 300000,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json'
   }

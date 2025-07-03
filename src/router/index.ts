@@ -16,6 +16,90 @@ const router = createRouter({
       name: 'marketplace',
       component: () => import('@/views/HomeView.vue')
     },
+
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/AboutUsView.vue')
+    },
+    {
+      path: '/partner',
+      name: 'partner',
+      component: () => import('@/views/BecomeOurPartnerView.vue')
+    },
+    {
+      path: '/career',
+      name: 'career',
+      component: () => import('@/views/CareerView.vue')
+    },
+    {
+      path: '/materials_policy',
+      name: 'materials_policy',
+      component: () => import('@/views/MaterialsTheftPolicyView.vue')
+    },
+    {
+      path: '/return_policy',
+      name: 'return_policy',
+      component: () => import('@/views/ReturnRefundPolicyView.vue')
+    },
+    {
+      path: '/privacy_policy',
+      name: 'privacy_policy',
+      component: () => import('@/views/PrivacyPolicyView.vue')
+    },
+    {
+      path: '/service_providers',
+      name: 'service_providers',
+      component: () => import('@/views/ServiceProvidersView.vue')
+    },
+    {
+      path: '/qhs',
+      name: 'qhs',
+      component: () => import('@/views/QualityHealthSafetyPolicyView.vue')
+    },
+    {
+      path: '/franchise',
+      name: 'franchise',
+      component: () => import('@/views/FranchiseView.vue')
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: () => import('@/views/TermsView.vue')
+    },
+    {
+      path: '/subscriptions',
+      name: 'subscriptions',
+      component: () => import('@/views/SubscriptionsView.vue')
+    },
+    {
+      path: '/demolition_works',
+      name: 'demolition_works',
+      component: () => import('@/views/DemolitionWorksView.vue')
+    },
+    {
+      path: '/service_request',
+      name: 'ServiceRequest',
+      component: () => import('@/views/service_request/ServiceRequest.vue'),
+    },
+    {
+      path: '/service_request_confirmation',
+      name: 'ServiceRequestConfirmation',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/service_request/Confirmation.vue'),
+    },
+    {
+      path: '/service_request_evaluation',
+      name: 'ServiceRequestEvaluation',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/service_request/Evaluation.vue'),
+    },
+    {
+      path: '/service_request_demolition',
+      name: 'ServiceRequestDemolition',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/service_request/Demolition.vue'),
+    },
     {
       path: '/management/:page?/:subPage?',
       name: 'management',

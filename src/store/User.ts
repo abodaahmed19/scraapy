@@ -177,8 +177,9 @@ const instance = createStore({
           commit('startInterval')
         })
     },
-    async login({ commit }, { email, password }) {
-      await axios.post('/api/users/token/login/', { email, password }).then((response) => {
+    async login({ commit }, { identifier }) {
+      console.log(identifier);
+      await axios.post('/api/otp/login/', { identifier }).then((response) => {
         commit('setToken', response.data.token)
         commit('setExpiry', response.data.expiry)
         commit('setUser', response.data.user)
@@ -187,7 +188,7 @@ const instance = createStore({
       })
     },
     async logout({ commit }) {
-      await axios.post('/api/users/token/logout/').then(() => {
+      await axios.post('/api/otp/logout/').then(() => {
         commit('clearState')
         commit('clearCart')
       })
@@ -209,6 +210,23 @@ const instance = createStore({
     },
     async registerUser({ commit }, { name, email, password, user_type }) {
       await axios.post('/api/users/', { name, email, password, user_type })
+    },
+    async sendOtpLogin({ commit }, { identifier }) {
+      await axios.post('/api/otp/send-otp/', { identifier })
+    },
+    async sendOtp({ commit }, { phone }) {
+      await axios.post('/api/otp/send-verification-code/', { phone })
+    
+        // ✅ Return structured result
+        return {
+          success: true,
+        }
+    },
+    async verifyLogin({ commit }, { identifier, code }) {
+      await axios.post('/api/otp/verify-otp/', { identifier, code })
+    },
+    async verify({ commit }, { phone, code }) {
+      await axios.post('/api/otp/verification-code-phone/', { phone, code })
     },
     // async registerBusinessProfile({ commit }, { cr_number }) {
     //   await axios.post('/api/users/business-profile/cr_number', { cr_number }).then((response) => {

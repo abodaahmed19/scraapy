@@ -3,6 +3,8 @@ import { defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import Loading from '@/components/UIElements/commonLoading.vue'
 import { toast } from 'vue3-toastify'
+import { App as CapApp } from '@capacitor/app'
+import { Capacitor } from '@capacitor/core'
 
 interface Notification {
   id: string
@@ -102,6 +104,17 @@ export default defineComponent({
     this.notificationInterval = setInterval(() => {
       this.getNotifications()
     }, 350000)
+
+    // ✅ Add back button listener for iOS/Android (not web)
+    if (Capacitor.getPlatform() !== 'web') {
+      CapApp.addListener('backButton', () => {
+        if (this.$route.path === '/') {
+          CapApp.exitApp()
+        } else {
+          this.$router.back()
+        }
+      })
+    }
   },
   beforeUnmount() {
     // Clean up the interval and timer
@@ -110,6 +123,11 @@ export default defineComponent({
     }
     if (this.timer) {
       clearTimeout(this.timer)
+    }
+
+    // ✅ Remove back button listeners
+    if (Capacitor.getPlatform() !== 'web') {
+      CapApp.removeAllListeners()
     }
   }
 })

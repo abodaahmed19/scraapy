@@ -133,7 +133,7 @@ export default defineComponent({
       return (this.$route.query.tab as string) || 'product'
     },
     marketPlaceFilters() {
-      return [
+      const filters = [
         {
           label: this.$t('burger.marketPlace'),
           value: 'product',
@@ -150,6 +150,7 @@ export default defineComponent({
           route: { name: 'marketplace', query: { tab: 'service' } }
         }
       ]
+      return filters
     }
   },
   setup() {

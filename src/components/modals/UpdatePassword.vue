@@ -183,13 +183,13 @@ export default defineComponent({
 </style>
 <style>
 .updatePassword .modal {
-  min-width: 25%;
-  max-width: 25%;
+  min-width: 50%;
+  max-width: 50%;
 }
 @media (max-width: 1400px) {
   .updatePassword .modal {
-    min-width: 40%;
-    max-width: 40%;
+    min-width: 75%;
+    max-width: 75%;
   }
 }
 </style>

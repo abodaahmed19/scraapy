@@ -1,5 +1,5 @@
 {
-  "name": "scraapy-vue",
+  "name": "scraapy",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,6 +14,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@capacitor/app": "^7.0.1",
+    "@capacitor/camera": "^7.0.1",
+    "@capacitor/cli": "^7.4.0",
+    "@capacitor/core": "^7.4.0",
+    "@capacitor/geolocation": "^7.1.2",
+    "@capacitor/ios": "^7.4.0",
+    "@capacitor/push-notifications": "^7.0.1",
+    "@capacitor/status-bar": "^7.0.1",
     "@formkit/auto-animate": "^0.8.2",
     "@intlify/unplugin-vue-i18n": "^1.4.0",
     "@vueform/multiselect": "^2.6.11",
@@ -24,7 +32,10 @@
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.2",
     "jspdf": "^3.0.0",
+    "package-name": "^0.1.0",
+    "pinia": "^3.0.3",
     "qrcode.vue": "^3.6.0",
+    "vee-validate": "^4.15.1",
     "vite-svg-loader": "^5.1.0",
     "vitest": "^1.2.2",
     "vue": "^3.4.15",
@@ -40,7 +51,8 @@
     "vue3-toastify": "^0.2.8",
     "vuelidate": "^0.7.7",
     "vuex": "^4.0.2",
-    "vuex-persist": "^3.1.3"
+    "vuex-persist": "^3.1.3",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.3.3",

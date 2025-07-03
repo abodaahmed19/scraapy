@@ -7,8 +7,9 @@
 
     <!-- Dropdown menu -->
     <transition name="slide-fade">
-      <div :class="['dropmenu-content rew', { full: fullScreen }, $i18n.locale === 'ar' ? uniqueClass : 'left']"
-        :style="offsetMenu" v-if="is_active">
+      <div
+        :class="['dropmenu-content rew', { full: fullScreen }, $i18n.locale === 'ar' ? uniqueClass : 'left']"
+        v-if="is_active"      >
         <slot name="menu"></slot>
       </div>
     </transition>
@@ -125,12 +126,10 @@ export default defineComponent({
   cursor: pointer;
   position: relative;
 }
-
 .rew.categories_dropdown {
   right: 0;
   left: unset;
 }
-
 /* when lang is ar, set position to right instead */
 /* [lang='ar'] .dropmenu-content { */
 /*   right: 0; */
@@ -139,7 +138,7 @@ export default defineComponent({
 
 .dropmenu-content {
   position: absolute;
-  top: calc(100% + 0.25rem);
+  top: 100%;
   left: 0;
   z-index: 10;
   transition:
@@ -150,7 +149,7 @@ export default defineComponent({
 
 .dropmenu-content.full {
   position: fixed;
-  top: 0;
+  /* top: 0; */
   left: 0;
   width: 100%;
   height: 100%;
@@ -170,7 +169,6 @@ export default defineComponent({
   transform: translateY(20px);
   opacity: 0;
 }
-
 .dropmenu.input-error {
   border: 1px solid red;
   border-radius: 8px;

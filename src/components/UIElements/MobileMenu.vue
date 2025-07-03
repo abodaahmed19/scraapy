@@ -159,11 +159,11 @@ export default defineComponent({
 
 .mobile-menu {
   background: var(--Blue-950, #0b3241);
-  padding: 32px 20px 40px 20px;
+  padding: 16px 20px 40px 20px;
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
-  height: 100%;
+  /* height: 100%; */
   overflow: auto;
 }
 

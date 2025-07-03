@@ -15,7 +15,9 @@ export default {
           </p>
         </div>
 
-        <div class="socials">
+
+        <img src="@/assets/payment_white.png?url" alt="logo" class="payment-image"  />
+        <!-- <div class="socials">
           <a href="">
             <img src="@/assets/twitter.svg?url" alt="twitter" />
           </a>
@@ -28,7 +30,7 @@ export default {
           <a href="">
             <img src="@/assets/youtube.svg?url" alt="youtube" />
           </a>
-        </div>
+        </div> -->
       </div>
       <div class="footer-group2">
         <div class="footer-container">
@@ -36,19 +38,24 @@ export default {
             <div class="footer-header">{{ $t('footer.product') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <a href="#scrap">{{ $t('footer.scrapMarketplace') }}</a>
+                <router-link to="/service_providers">
+                  {{ $t('footer.service_providers') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#services">{{ $t('footer.services') }}</a>
+                <router-link to="/subscriptions">
+                  {{ $t('footer.subscriptions') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#renting">{{ $t('footer.rentingEquipment') }}</a>
+                <router-link to="/demolition_works">
+                  {{ $t('footer.demolition_works') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#offers">{{ $t('footer.offers') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#bedding">{{ $t('footer.bedding') }}</a>
+                <router-link to="/franchise">
+                  {{ $t('footer.franchise') }}
+                </router-link>
               </li>
             </ul>
           </div>
@@ -56,33 +63,19 @@ export default {
             <div class="footer-header">{{ $t('footer.company') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <a href="#about">{{ $t('footer.about') }}</a>
+                <router-link to="/about">
+                  {{ $t('footer.about') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#blog">{{ $t('footer.blog') }}</a>
+                <router-link :to="{ name: 'partner' }">
+                  {{ $t('footer.partner') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#careers">{{ $t('footer.careers') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#contact">{{ $t('footer.contact') }}</a>
-              </li>
-            </ul>
-          </div>
-          <div class="footer-column">
-            <div class="footer-header">{{ $t('footer.resources') }}</div>
-            <ul class="footer-column">
-              <li class="footer-item">
-                <a href="#examples">{{ $t('footer.examples') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#community">{{ $t('footer.community') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#guides">{{ $t('footer.guides') }}</a>
-              </li>
-              <li class="footer-item">
-                <a href="#faqs">{{ $t('footer.faqs') }}</a>
+                <router-link :to="{ name: 'career' }">
+                  {{ $t('footer.careers') }}
+                </router-link>
               </li>
             </ul>
           </div>
@@ -90,13 +83,29 @@ export default {
             <div class="footer-header">{{ $t('footer.legal') }}</div>
             <ul class="footer-column">
               <li class="footer-item">
-                <a href="#privacy">{{ $t('footer.privacy') }}</a>
+                <router-link :to="{ name: 'privacy_policy' }">
+                  {{ $t('footer.privacy') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#terms">{{ $t('footer.terms') }}</a>
+                <router-link to="/terms">
+                  {{ $t('footer.terms') }}
+                </router-link>
               </li>
               <li class="footer-item">
-                <a href="#security">{{ $t('footer.security') }}</a>
+                <router-link :to="{ name: 'return_policy' }">
+                  {{ $t('footer.return') }}
+                </router-link>
+              </li>
+              <li class="footer-item">
+                <router-link :to="{ name: 'materials_policy' }">
+                  {{ $t('footer.materials') }}
+                </router-link>
+              </li>
+              <li class="footer-item">
+                <router-link :to="{ name: 'qhs' }">
+                  {{ $t('footer.qhs') }}
+                </router-link>
               </li>
             </ul>
           </div>
@@ -107,7 +116,7 @@ export default {
     <div class="footer-legal max-width">
       <div class="address">
         <p>{{ $t('footer.address') }}</p>
-        <p>{{ $t('footer.crVat') }}</p>
+        <p>{{ $t('footer.cr') }} | {{ $t('footer.vat') }}</p>
       </div>
     </div>
     <div class="footer-art"></div>
@@ -299,5 +308,10 @@ footer {
     /* flex-direction: column; */
     padding: 148px 30px 0 30px;
   }
+}
+.payment-image {
+  max-width: 60%;
+  height: auto;
+  padding: 0 0 10px 0
 }
 </style>

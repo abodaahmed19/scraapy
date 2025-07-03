@@ -8,7 +8,7 @@ export default defineComponent({
   props: {
     textColor: {
       type: String,
-      default: '#3D3D3D'
+      default: '#fff'
     }
   },
   data() {
@@ -169,7 +169,7 @@ export default defineComponent({
 
 <style scoped>
 .management-sidebar-icon {
-  stroke: #3d3d3d;
+  stroke: #fff;
 }
 
 .management-sidebar-icon.mobile {
@@ -177,18 +177,26 @@ export default defineComponent({
 }
 
 .sidebar {
+  background-color: #0C3241;
   display: flex;
   flex-direction: column;
   min-width: 240px;
   border-right: 1px solid #d1d1d1;
   padding-right: 2px;
   position: fixed;
-  height: 100vh;
-  top: 93px;
+  /* top: 93px; */
   left: 80px;
   width: 250px;
   height: calc(100vh - 93px); /* Adjust height to account for top offset */
   overflow: hidden; /* Prevent sidebar itself from scrolling */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    min-width: 100%;
+    height: 80vh;
+    left: 0px;
+  }
 }
 html[dir='rtl'] .sidebar {
   border-right: unset;
@@ -204,12 +212,18 @@ html[dir='rtl'] .sidebar {
   overscroll-behavior: contain; /* Prevent scroll chaining */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
 }
+.sidebar-item svg,
+.sidebar-item img {
+  width: 25px;   /* taille réduite de l'icône */
+  height: 25px;
+  flex-shrink: 0; /* empêcher l’icône de rétrécir */
+}
 .sidebar-group {
   display: flex;
   padding: 14px 2px;
   flex-direction: column;
   gap: 12px;
-  border-bottom: 0.5px solid var(--Dark-700, #e7e7e7);
+  border-bottom: 0.5px solid #e7e7e7;
 }
 
 .sidebar-group.mobile {
@@ -217,6 +231,7 @@ html[dir='rtl'] .sidebar {
 }
 
 .sidebar-item {
+  color: white;
   display: flex;
   gap: 12px;
   align-items: center;
@@ -270,7 +285,7 @@ html[dir='rtl'] .sidebar-item img {
 }
 
 .sidebar-item.active svg {
-  filter: invert(56%) sepia(35%) saturate(3966%) hue-rotate(120deg) brightness(93%) contrast(84%);
+  /* filter: invert(56%) sepia(35%) saturate(3966%) hue-rotate(120deg) brightness(93%) contrast(84%); */
 }
 
 .sidebar-item-arrow.active svg {
@@ -327,14 +342,14 @@ html[dir='rtl'] .sidebar-sub-items-animated {
   align-items: flex-start;
 }
 .info h4 {
-  color: #6d6d6d;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
 }
 .info h5 {
-  color: #3d3d3d;
-  font-size: 18px;
-  font-weight: 600;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
 }
 .sidebar-header .user_image {
   width: 48px;
@@ -348,18 +363,18 @@ html[dir='rtl'] .sidebar-sub-items-animated {
   object-fit: cover;
 }
 .sidebar-item:hover {
-  color: #15b377;
+  color: #fff;
 }
 
 .sidebar-item.active {
-  color: #15b377;
-  border: 1px solid #15b377;
-  background-color: rgba(21, 179, 119, 0.1);
+  color: #fff;
+  border: 1px solid #1a4b5f;
+  background-color: #1a4b5f;
 }
 </style>
 <style>
 .sidebar-item svg path {
-  stroke: #6d6d6d;
+  stroke: #fff;
 }
 .mobile-menu .sidebar-group.mobile svg path {
   stroke: #fff;

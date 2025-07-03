@@ -8,6 +8,8 @@ import UploadFile from '@/components/UIElements/UploadFile.vue'
 import SuccessMessage from '@/components/modals/SuccessMessage.vue'
 import inputField from '@/components/UIElements/inputField.vue'
 import MainBtn from '@/components/UIElements/MainBtn.vue'
+import { Camera, CameraResultType } from '@capacitor/camera'
+import { Capacitor } from '@capacitor/core'
 
 export default defineComponent({
   components: {
@@ -42,6 +44,9 @@ export default defineComponent({
         this.contactNumber !== this.$userStore.state.user?.contact_number ||
         this.email !== this.$userStore.state.user?.email
       )
+    },
+    isMobile() {
+      return Capacitor.getPlatform() !== 'web';
     }
   },
 
@@ -141,6 +146,56 @@ export default defineComponent({
       } catch (error) {
         console.error('Error in uploadImage:', error)
       }
+    },
+    async takePhoto() {
+      try {
+        const photo = await Camera.getPhoto({
+          quality: 90,
+          resultType: CameraResultType.Uri,
+          source: 'CAMERA'
+        });
+        console.log('Photo taken:', photo.webPath);
+        // يمكنك هنا إرسال الصورة مباشرة إلى الخادم إن أردت
+        await this.uploadBase64Image(photo.webPath); // مثال
+      } catch (error) {
+        console.error('Error taking photo:', error);
+      }
+    },
+    async selectFromGallery() {
+      try {
+        const photo = await Camera.getPhoto({
+          quality: 90,
+          resultType: CameraResultType.Uri,
+          source: 'PHOTOS', // ← هذا يفتح معرض الصور بدل الكاميرا
+          correctOrientation: true
+        });
+
+        console.log('Selected from gallery:', photo.webPath);
+
+        // تحويل الصورة إلى ملف وإرسالها للخادم
+        await this.uploadBase64Image(photo);
+      } catch (error) {
+        console.error('Error selecting image from gallery:', error);
+      }
+    },
+    async uploadBase64Image(webPath: string) {
+      // تحويل الرابط base64 إلى ملف وإرساله
+      const response = await fetch(webPath);
+      const blob = await response.blob();
+      const file = new File([blob], 'photo.jpg', { type: 'image/jpeg' });
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        const res = await this.$axios.patch('/api/users/me/', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        this.$userStore.commit('setUser', res.data || {});
+        console.log('Mobile upload successful:', res.data);
+      } catch (err) {
+        console.error('Error uploading mobile image:', err);
+      }
     }
   }
 })
@@ -193,11 +248,22 @@ export default defineComponent({
           </div>
           <!-- <img src="https://via.placeholder.com/150" :alt="$t('settings.businessLogoAlt')"  /> -->
         </div>
-        <UploadFile :type="['.svg', '.png', '.jpg', '.gif']" @file="uploadImage">
-          <div class="upload-image-logo">
+        <template v-if="isMobile">
+          <button class="upload-image-logo" @click="takePhoto">
+            <img src="@/assets/svg-icons/camera-plus.svg?url" />
+          </button>
+          <button class="upload-image-logo" @click="selectFromGallery">
             <img src="@/assets/svg-icons/cloud.svg?url" />
-          </div>
-        </UploadFile>
+          </button>
+        </template>
+
+        <template v-else>
+          <UploadFile :type="['.svg', '.png', '.jpg', '.gif']" @file="uploadImage">
+            <div class="upload-image-logo">
+              <img src="@/assets/svg-icons/cloud.svg?url" />
+            </div>
+          </UploadFile>
+        </template>
       </div>
     </div>
 
