@@ -5,6 +5,7 @@ import Loading from '@/components/UIElements/commonLoading.vue'
 import { toast } from 'vue3-toastify'
 import { App as CapApp } from '@capacitor/app'
 import { Capacitor } from '@capacitor/core'
+import User from '@/store/User';
 
 interface Notification {
   id: string
@@ -97,13 +98,15 @@ export default defineComponent({
     const storedIds = localStorage.getItem('displayedNotificationIds')
     this.displayedNotificationIds = storedIds ? JSON.parse(storedIds) : []
 
-    // Initial fetch of notifications
-    this.getNotifications()
-
-    // Set interval to fetch notifications every 5 minutes (350,000ms)
-    this.notificationInterval = setInterval(() => {
+    if (User.getters.isAuthenticated) {
+      // Initial fetch of notifications
       this.getNotifications()
-    }, 350000)
+
+      // Set interval to fetch notifications every 5 minutes (350,000ms)
+      this.notificationInterval = setInterval(() => {
+        this.getNotifications()
+      }, 350000)
+    }
 
     // ✅ Add back button listener for iOS/Android (not web)
     if (Capacitor.getPlatform() !== 'web') {
