@@ -27,7 +27,7 @@ export default defineComponent({
   <div class="category-card">
     <div class="category-card-img" :class="{ small }">
       <img v-if="categoryGroup.icon" draggable="false" :src="categoryGroup.icon" :alt="categoryGroup.name" />
-      <img v-if="categoryGroup.icon == null" draggable="false" src="@/assets/svg-icons/my_listing_icon.svg" />
+      <img v-if="categoryGroup.icon == null" draggable="false" src="@/assets/svg-icons/my_listing_icon.svg?url" />
     </div>
     <div class="category-card-title">
       <p>
