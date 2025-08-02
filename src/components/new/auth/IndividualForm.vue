@@ -70,8 +70,8 @@ async function sendOtp() {
   try {
     // Simulate API call (replace with real one)
     const result = await userStore.dispatch('sendOtp', {
-      // phone: '+966' + phone.value.slice(1)
-      phone: phone.value
+      phone: '+966' + phone.value.slice(1)
+      // phone: phone.value
     })
 
     if (result?.success) {
@@ -95,9 +95,9 @@ async function verifyOtp() {
     isVerifying.value = true
     // Call your store action to verify OTP
     await userStore.dispatch('verify', {
-      phone: phone.value,
+      // phone: phone.value,
+      phone: '+966' + phone.value.slice(1),
       code: otpCode.value
-      // phone: '+966' + phone.value.slice(1),
     })
 
     // Success
@@ -123,8 +123,8 @@ const onSubmit = handleSubmit((values) => {
   const updatedValues = {
     fullName: values.fullName,
     email: values.email,
-    // phone: '+966' + values.phone.slice(1)
-    phone: values.phone
+    phone: '+966' + values.phone.slice(1)
+    // phone: values.phone
   }
 
   emit('submit', updatedValues)

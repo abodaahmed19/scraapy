@@ -72,8 +72,8 @@ const onSubmit = handleSubmit(async (values) => {
     if (loginMethod.value === 'email') {
       identifier = values.email
     } else {
-      // identifier = '+966' + values.phone.slice(1)
-      identifier = values.phone
+      identifier = '+966' + values.phone.slice(1)
+      // identifier = values.phone
     }
 
     await userStore.dispatch('sendOtpLogin', { identifier: identifier })

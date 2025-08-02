@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Scraapy</string>
+    <string name="title_activity_main">Scraapy</string>
+    <string name="package_name">sa.scraapy</string>
+    <string name="custom_url_scheme">sa.scraapy</string>
+</resources>
